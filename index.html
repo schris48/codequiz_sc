@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz by Schris</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1 class="page-title">Code Quiz</h1>
+    <div role="timer" class="countdown" id="countdown-timer">
+      <label class="countdown" id="seconds">30</label><label class="countdown" id="minutes">00</label>
+    </div>
+    <p>Click the button below to start the code quiz!</p>
+    <button type="submit" class="btn" id="start-quiz">Start Quiz</button>
+  </header>
+  <main class="page-content">
+    <section class="question-wrapper">
+      <h2 class="question-title" id="question"></h2>
+      <ul class="question-answer-list" id="question-list">
+        <li type="input" class="question-answer-item" id="answerOne"></li>
+        <li type="input" class="question-answer-item" id="answerTwo"></li>
+        <li type="input" class="question-answer-item" id="answerThree"></li>
+        <li type="input" class="question-answer-item" id="answerFour"></li>
+        <li class="answer-item" id="answer"></li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    Code Quiz by Schris. Last updated March 2022.
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
