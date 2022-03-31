@@ -9,7 +9,6 @@ var answerThree = document.querySelector("#answerThree");
 var answerFour = document.querySelector("#answerFour");
 var minutesLabel = document.querySelector("#minutes");
 var secondsLabel = document.querySelector("#seconds");
-var totalSeconds = 30;
 
 const questionArray = [
   {
@@ -72,26 +71,25 @@ var generateQuestion = function () {
   answerFour.addEventListener("click", answerHandler);
   console.log(questionChoiceFour);
   
-  setInterval(setTime, 1000);
-
-  function setTime() {
-    --totalSeconds;
-    secondsLabel.innerHTML = pad(totalSeconds % 60);
-    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-  }
-  
-  function pad(val) {
-    var valString = val + "";
-    console.log(valString);
-    if (valString.length < 2) {
-      return "0" + valString;
-    } else {
-      return valString;
-    }
-  } if (secondsLabel.innerHTML <= 00) {
-    gameOver();
-  }
+  timer();
 }
+
+var timer = function() {
+  var timeLeft = 30;
+    var timerEl = document.getElementById("countdown-timer");
+
+    var timerId = setInterval(countdown, 1000);
+
+    function countdown() {
+      if (timeLeft === -1) {
+        clearTimeout(timerId);
+        gameOver();
+      } else {
+        timerEl.innerHTML = timeLeft + " seconds remaining";
+        timeLeft--;
+      }
+    }
+  }
 
 var answerHandler = function() {
 
@@ -102,7 +100,7 @@ var answerHandler = function() {
 
     console.log("wrong");
     // deduct time for wrong answers
-    --totalSeconds;
+    totalSeconds = --totalSeconds;
   }
   else {
     console.log("correct");
@@ -119,7 +117,7 @@ var answerHandler = function() {
 
 var gameOver = function() {
   console.log("Game Over");
-  return;
+  
 
   //stop interval
 }
