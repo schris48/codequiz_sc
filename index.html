@@ -11,7 +11,7 @@
   <header>
     <h1 class="page-title">Code Quiz</h1>
     <div role="timer" class="countdown" id="countdown-timer"></div>
-    <p>Click the button below to start the code quiz!</p>
+    <p id="instructions">Click the button below to start the code quiz!</p>
     <button type="submit" class="btn" id="start-quiz">Start Quiz</button>
   </header>
   <main class="page-content">
@@ -22,8 +22,15 @@
         <li type="input" class="question-answer-item" id="answerTwo"></li>
         <li type="input" class="question-answer-item" id="answerThree"></li>
         <li type="input" class="question-answer-item" id="answerFour"></li>
-        <li class="answer-item" id="answer"></li>
+      <ul class="final-score-title" id="scoreTitle">
+        <li class="final-score" id="finalScore"></li>
       </ul>
+    </section>
+    <section class="scores-container" id="scoresContainer">
+      <h2 class="scores-title" id="scoresTitle"></h2>
+        <ul class="scores-list" id="scoresList">
+          <li class="scores-item" id="scoresItem"></li>
+        </ul>
     </section>
   </main>
   <footer>

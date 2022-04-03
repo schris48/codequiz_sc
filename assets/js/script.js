@@ -1,5 +1,7 @@
+var timeLeft = 60;
 var questionCounter = 0;
 var startButton = document.querySelector("#start-quiz");
+var instructionsEl = document.querySelector("#instructions");
 var questionList = document.querySelector("#question-list");
 var pageContentEl = document.querySelector("#page-content");
 var questionEl = document.querySelector("#question");
@@ -9,30 +11,33 @@ var answerThree = document.querySelector("#answerThree");
 var answerFour = document.querySelector("#answerFour");
 var minutesLabel = document.querySelector("#minutes");
 var secondsLabel = document.querySelector("#seconds");
+var timerEl = document.querySelector("#countdown-timer");
+var userInitialsEl = document.querySelector("#userInitials");
+
 
 const questionArray = [
   {
-    question: "Commonly used data types do NOT include:",
+    question: "1. Commonly used data types do NOT include:",
     choices: ["Strings", "Booleans", "Alerts", "Numbers"],
     correctChoice: "Alerts"
   },
   {
-    question: "The condition in an if/else statement is enclosed in:",
+    question: "2. The condition in an if/else statement is enclosed in:",
     choices: ["Quotes", "Parenthisis", "Curly brackets", "Square brackets"],
     correctChoice: "Parenthesis"
   },
   {
-    question: "Arrays in JavaScript can be used to store:",
+    question: "3. Arrays in JavaScript can be used to store:",
     choices: ["Numbers and Strings", "Other arrays", "Booleans", "All of the above"],
     correctChoice: "All of the above"
   },
   {
-    question: "String values must be enclosed with ______ when being assigned to variables",
+    question: "4. String values must be enclosed with ______ when being assigned to variables",
     choices: ["Commas", "Curly brackets", "Quotes", "Parenthesis"],
     correctChoice: "Quotes"
   },
   {
-    question: "A very useful tool used during development and debugging for printin content to the debugger is:",
+    question: "5. A very useful tool used during development and debugging for printing content to the debugger is:",
     choices: ["JavaScript", "Terminal Bash", "for loops", "console.log"],
     correctChoice: "console.log"
   }
@@ -41,8 +46,11 @@ const questionArray = [
 
 // create question 1
 var generateQuestion = function () {
+  // disappear start quiz button
+  document.querySelector("#start-quiz").style.display="none";
+  document.querySelector("#instructions").style.display="none";
+
   // loop through questionArray
-  // for (var i = 0; i < questionArray.length; i++) {
   var questionTitle = questionArray[questionCounter].question;
   questionEl.textContent = questionTitle;
   console.log(questionTitle);
@@ -75,85 +83,130 @@ var generateQuestion = function () {
 }
 
 var timer = function() {
-  var timeLeft = 30;
-    var timerEl = document.getElementById("countdown-timer");
+  var timerId = setInterval(countdown, 1000);
 
-    var timerId = setInterval(countdown, 1000);
-
-    function countdown() {
-      if (timeLeft === -1) {
-        clearTimeout(timerId);
-        gameOver();
-      } else {
-        timerEl.innerHTML = timeLeft + " seconds remaining";
-        timeLeft--;
-      }
+  function countdown() {
+    if (questionCounter === 5) {
+      // clear timer
+      clearTimeout(timerId);
+      // clear quiz question and answers
+      document.querySelector("#question").style.display="none";
+      document.querySelector("#answerOne").style.display="none";
+      document.querySelector("#answerTwo").style.display="none";
+      document.querySelector("#answerThree").style.display="none";
+      document.querySelector("#answerFour").style.display="none";
+      timerEl.innerHTML = "Quiz complete!";
+      gameOver();
+    }
+    else if (timeLeft === -1) {
+      clearTimeout(timerId);
+      gameOver();
+    } else {
+      timerEl.innerHTML = timeLeft + " seconds remaining!";
+      timeLeft--;
     }
   }
+}
 
 var answerHandler = function() {
-
-  // var imCorrect = questionArray[questionCounter].correctChoice;
-  // console.log("Correct Choice: ", imCorrect);
-  // console.log("This.value: ", this.innerText);
   if (this.innerText !== questionArray[questionCounter].correctChoice) {
-
+    // check if answer is wrong
     console.log("wrong");
-    // deduct time for wrong answers
-    totalSeconds = --totalSeconds;
+    // speed up timer for wrong answers
+    timerEl.innerHTML = timeLeft + " seconds remaining!";
+    if (timeLeft = timeLeft - 10) {
+      timer();
+    }
   }
   else {
+    // answer is correct
     console.log("correct");
   }
-
+  
   questionCounter++;
   if (questionCounter === questionArray.length) {
-    //game over function
-    gameOver();
-  } else {
+    // check if question counter has any questions left
+    timer();
+    } else {
     generateQuestion();
   }
 }
 
 var gameOver = function() {
-  console.log("Game Over");
-  
 
-  //stop interval
+  // generate final score
+  let finalScoreEl = document.querySelector("#finalScore");
+  finalScoreEl.classList.remove("final-score");
+  finalScoreEl.classList.add("final-score::after");
+
+  let scoreTitleEl = document.querySelector("#scoreTitle");
+  scoreTitleEl.classList.remove("final-score-title");
+  scoreTitleEl.classList.add("final-score-title::after");
+
+  // // generate scores container element
+  // let scoresContainerEl = document.querySelector("#scoresContainer");
+  // scoresContainerEl.classList.remove("scores-container");
+  // scoresContainerEl.classList.add("scores-container::after")
+
+  // // generate scores title element
+  // let scoresTitleEl = document.querySelector("#scoresTitle");
+  // scoresTitleEl.classList.remove("scores-title");
+  // scoresTitleEl.classList.add("scores-title::after");
+
+  // // generate scores list element
+  // let scoresListEl = document.querySelector("#scoresList");
+  // scoresListEl.classList.remove("scores-list");
+  // scoresListEl.classList.add("scores-list::after");
+
+  // // generate scores item
+  // let scoresItemEl = document.querySelector("#scoresItem");
+  // scoresItemEl.classList.remove("class-list");
+  // scoresItemEl.classList.add("scores-item::after");
+
+  // prompt user for initials and save them
+
+    // generate score
+    var generateFinalScoreEl = timeLeft;
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      finalScoreEl.textContent= "Game over! You scored: " + timeLeft;
+    } else {
+      finalScoreEl.textContent= "Game over! You scored: " + timeLeft;
+    }
+    console.log("This is the final score: " + generateFinalScoreEl);
 }
 
-//suggestion for score, time left i
+function promptUserInitials() {
+var userInitials = "";
+while (userInitials === "" || userInitials === null) {
+  userInitials = window.prompt("Enter and submit initials to save your score:");
+}
+console.log("Your initials are " + userInitials);
+return userInitials;
+};
 
-    // var questionAnswer = questionArray[questionCounter].correctChoice;
-    // console.log("The answer is: " + questionAnswer);
-
-    // var questionWrapperEl = document.createElement("section");
-    // questionWrapperEl.className = "question-wrapper";
-    // // create unordered list
-    // var questionAnswerListEl = document.createElement("ul");
-    // questionAnswerListEl.className = "question-answer-list";
-
-    // questionWrapperEl.appendChild(questionAnswerListEl);
-
-    // create question
-    // var questionEl = document.createElement("h2");
-    // questionEl.className = "question-title";
-    // questionEl.textContent = questionTitle;
-
-    // questionWrapperEl.appendChild(questionEl);
+  // if (initials.length <= 3) {
+  //   console.log(initials);
+  //   return;
+  // } else {
+  //   window.prompt("Invalid entry! Please enter initials containing three or less characters.");
+  //   return;
+  
+  // display high score list
+  // var generateScoreList = function() {
+  //   var highScoreEl = document.querySelector("#high-scores");
+  //   console.log(highScoreEl);
+  //   var scoreOneEl = document.querySelector("#scoreOne");
+  //   console.log(scoreOneEl);
+  //   var scoreTwoEl = document.querySelector("#scoreTwo");
+  //   console.log(scoreTwoEl);
+  //   var scoreThreeEl = document.querySelector("#scoreThree");
+  //   console.log(scoreThreeEl);
+  //   var scoreFourEl = document.querySelector("#scoreFour");
+  //   console.log(scoreFourEl);
+  //   var scoreFiveEl = document.querySelector("#scoreFive");
+  //   console.log(scoreFiveEl);
   // }
-  // create list items
 
-
-// var createQuestionEl = function(questionEl) {
-//   var questionListEl = document.createElement("h2");
-//   questionListEl.className = "question-title";
-
-//   questionListEl.setAttribute("question-id", questionCounter);
-
-//   var questionListItem = document.createElement("ul");
-//   questionListItem.classname = "question-answer-list";
-//   questionListItem.innerHTML = '<li class="question-answer-item">' + questionEl.choices + '</li></ul>';
-// }
 
 startButton.addEventListener("click", generateQuestion);

@@ -39,27 +39,6 @@
     font-size: 1.6rem;
   }
   
-  form {
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-  }
-  
-  form input {
-    outline: none;
-    border: none;
-    padding: 12px;
-    width: 100%;
-    font-size: 2.2rem;
-    border: 2px solid var(--grey);
-    border-radius: 12px;
-  }
-  
-  form .form-group {
-    margin: 10px 6px 10px 0;
-    flex: 1;
-  }
-  
   footer {
     width: 100%;
     background: var(--secondary);
@@ -67,6 +46,7 @@
     font-size: 2.4rem;
     padding: 20px;
     border-top: 5px solid var(--primary);
+    text-align: center;
   }
   
   .page-title {
@@ -98,7 +78,8 @@
   .question-answer-list {
     list-style: none;
     padding: 15px;
-    height: calc(100% - 50px);
+    height: fit-content;
+    width: 75%;
     background: #3eff687e;
     border-radius: 12px;
     border: 2px solid var(--grey);
@@ -112,7 +93,7 @@
     border-radius: 12px;
     margin-bottom: 20px;
   }
-  
+
   .answer-item {
     color: var(--grey);
     padding: 60px 15px;
@@ -122,26 +103,70 @@
     margin-bottom: 20px;
   }
 
-  .task-name {
-    margin: 0;
-    font-size: 1.8rem;
-  }
-  
-  .task-type {
-    color: var(--secondary);
-    font-size: 1.55rem;
-  }
-  .task-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 10px 0 5px 0;
-    justify-content: space-between;
-  }
-  
-  .task-actions button,
-  .task-actions select {
+  .scores-container {
     flex: 1;
+    margin: 0 20px 20px;
+    display: none;
+  }
+  
+  .scores-title {
+    color: var(--secondary);
+    font-size: 2.6rem;
+    display: none;
+  }
+  
+  .scores-list {
+    list-style: none;
+    padding: 15px;
+    height: fit-content;
+    width: 75%;
+    background: #3eff687e;
+    border-radius: 12px;
+    border: 2px solid var(--grey);
+    display: none;
+  }
+  
+  .scores-item {
+    color: var(--grey);
+    padding: 15px 15px;
+    border: 2px solid var(--grey);
+    background: var(--tertiary);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .scores-container::after {
+    flex: 1;
+    margin: 0 20px 20px;
+    display: normal;
+  }
+  
+  .scores-title::after {
+    color: var(--secondary);
+    font-size: 2.6rem;
+    display: normal;
+  }
+  
+  .scores-list::after {
+    list-style: none;
+    padding: 15px;
+    height: fit-content;
+    width: 75%;
+    background: #3eff687e;
+    border-radius: 12px;
+    border: 2px solid var(--grey);
+    display: normal;
+  }
+  
+  .scores-item::after {
+    color: var(--grey);
+    padding: 15px 15px;
+    border: 2px solid var(--grey);
+    background: var(--tertiary);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: normal;
   }
 
   .countdown {
@@ -173,65 +198,42 @@
     box-shadow: 0 0px var(--grey);
     top: 0;
   }
-  
-  .edit-btn,
-  .delete-btn {
-    font-size: 1.4rem;
-    padding: 5px 7px;
-    margin: 3px;
-    background: var(--secondary);
-    color: #fff;
-  }
-  
-  .select-dropdown,
-  .select-status {
-    display: block;
-    font-size: 2.2rem;
-    color: #444;
-    padding: 12px;
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    border: 2px solid var(--grey);
-    border-radius: 12px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
-    background-image: url("../images/select-arrow.svg");
-    background-repeat: no-repeat, repeat;
-    background-position: right 0.7em top 50%, 0 0;
-    background-size: 0.65em auto, 100%;
-  }
-  
-  .select-status {
-    font-size: 1.4rem;
-    padding: 4px 28px 4px 4px;
-    width: auto;
-  }
-  
-  .select-dropdown::-ms-expand,
-  .select-status::-ms-expand {
+
+  .final-score-title {
+    color: var(--secondary);
+    font-size: 2.6rem;
+    list-style: none;
     display: none;
   }
-  
-  .select-dropdown:hover,
-  .select-status:hover {
-    border-color: #888;
+
+  .final-score-title::after {
+    color: var(--secondary);
+    font-size: 2.6rem;
+    list-style: none;
+    display: normal;
   }
-  
-  .select-dropdown:focus,
-  .select-status:focus {
-    border-color: #aaa;
-    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-    box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #222;
-    outline: none;
+
+  .final-score {
+    color: var(--grey);
+    padding: 15px 15px;
+    border: 2px solid var(--grey);
+    background: var(--tertiary);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    list-style: none;
+    text-align: center;
+    display: none;
   }
-  .select-dropdown option,
-  .select-status option {
-    font-weight: normal;
-    font-size: 2rem;
+  .final-score::after {
+    color: var(--grey);
+    padding: 15px 15px;
+    border: 2px solid var(--grey);
+    background: var(--tertiary);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    list-style: none;
+    text-align: center;
+    display: normal;
   }
   
   @media screen and (max-width: 980px) {
