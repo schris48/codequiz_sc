@@ -48,7 +48,8 @@ footer {
   padding: 20px;
   border-top: 5px solid var(--primary);
   text-align: center;
-  width: 100%;
+  position: sticky;
+  top: 100vh;
 }
 
 .page-title {
@@ -59,7 +60,7 @@ footer {
 }
 
 .page-content {
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -204,29 +205,26 @@ footer {
 .final-score-title {
   color: var(--secondary);
   font-size: 2.6rem;
-  list-style: none;
   display: none;
 }
 
-.final-score-title::after {
+/* .final-score-title::after {
   color: var(--secondary);
   font-size: 2.6rem;
   list-style: none;
   display: normal;
-}
+} */
 
-.final-score {
+.final-score-container {
   color: var(--grey);
   padding: 15px 15px;
   border: 2px solid var(--grey);
   background: var(--tertiary);
   border-radius: 12px;
   margin-bottom: 20px;
-  list-style: none;
-  text-align: center;
   display: none;
 }
-.final-score::after {
+/* .final-score::after {
   color: var(--grey);
   padding: 15px 15px;
   border: 2px solid var(--grey);
@@ -236,7 +234,7 @@ footer {
   list-style: none;
   text-align: center;
   display: normal;
-}
+} */
 
 @media screen and (max-width: 980px) {
   form .form-group {

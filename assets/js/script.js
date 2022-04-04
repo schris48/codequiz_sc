@@ -13,6 +13,10 @@ var minutesLabel = document.querySelector("#minutes");
 var secondsLabel = document.querySelector("#seconds");
 var timerEl = document.querySelector("#countdown-timer");
 var userInitialsEl = document.querySelector("#userInitials");
+var submitInitialsBtnEl = document.querySelector("#submitInitialsBtn");
+var finalScoreEl = document.querySelector("#finalScore");
+var questionWrapperEl = document.querySelector(".question-wrapper");
+var finalScoreContainer = document.querySelector("#finalScoreContainer");
 
 
 const questionArray = [
@@ -135,13 +139,8 @@ var answerHandler = function() {
 var gameOver = function() {
 
   // generate final score
-  let finalScoreEl = document.querySelector("#finalScore");
-  finalScoreEl.classList.remove("final-score");
-  finalScoreEl.classList.add("final-score::after");
-
-  let scoreTitleEl = document.querySelector("#scoreTitle");
-  scoreTitleEl.classList.remove("final-score-title");
-  scoreTitleEl.classList.add("final-score-title::after");
+  questionWrapperEl.style.display="none";
+  finalScoreContainer.style.display="block";
 
   // // generate scores container element
   // let scoresContainerEl = document.querySelector("#scoresContainer");
@@ -174,23 +173,33 @@ var gameOver = function() {
       finalScoreEl.textContent = "Game over! You scored: " + timeLeft;
     }
     console.log("This is the final score: " + generateFinalScoreEl);
-    if (generateFinalScoreEl >= 0) {
-      promptUserInitials();
-    }
 }
 
-var promptUserInitials = function() {
-  var userInitialsFormEl = document.createElement("form");
-  userInitialsFormEl.className = "user-initials-form";
-  userInitialsFormEl.id = "userInitialsForm";
-  userInitialsFormEl.innerHTML = '<div class="user-initials-form" id="userInitialsForm"></div>';
+var submitInitials = function() {
+  var initialsValue = userInitialsEl.value.trim()
+  var scores = []
+  var newUserScore = {
+    score: timeLeft,
+    initials: initialsValue
+  }
 
-  var userInitialsEl = document.createElement("input");
-  userInitialsEl.className = "user-initials";
-  userInitialsEl.id = "userInitials";
-  userInitialsEl.innerHTML = '"<input type="text" name="user-initials" placeholder="Enter initials to save your score: />"';
+  scores.push(newUserScore);
+  console.log(scores);
 
-  userInitialsEl.appendChild(userInitialsEl);
+  // stringify value of local storage
+  localStorage.setItem("allScores", JSON.stringify(scores));
+
+  // var userInitialsFormEl = document.createElement("form");
+  // userInitialsFormEl.className = "user-initials-form";
+  // userInitialsFormEl.id = "userInitialsForm";
+  // userInitialsFormEl.innerHTML = '<div class="user-initials-form" id="userInitialsForm"></div>';
+
+  // var userInitialsEl = document.createElement("input");
+  // userInitialsEl.className = "user-initials";
+  // userInitialsEl.id = "userInitials";
+  // userInitialsEl.innerHTML = '"<input type="text" name="user-initials" placeholder="Enter initials to save your score: />"';
+
+  // userInitialsEl.appendChild(userInitialsEl);
 
 
 }
@@ -220,3 +229,4 @@ var promptUserInitials = function() {
 
 
 startButton.addEventListener("click", generateQuestion);
+submitInitialsBtnEl.addEventListener("click", submitInitials);
