@@ -167,23 +167,33 @@ var gameOver = function() {
 
     // generate score
     var generateFinalScoreEl = timeLeft;
-    if (timeLeft <= 0) {
+    if (timeLeft <= -1) {
       timeLeft = 0;
-      finalScoreEl.textContent= "Game over! You scored: " + timeLeft;
+      finalScoreEl.textContent = "Game over! You scored: " + timeLeft;
     } else {
-      finalScoreEl.textContent= "Game over! You scored: " + timeLeft;
+      finalScoreEl.textContent = "Game over! You scored: " + timeLeft;
     }
     console.log("This is the final score: " + generateFinalScoreEl);
+    if (generateFinalScoreEl >= 0) {
+      promptUserInitials();
+    }
 }
 
-function promptUserInitials() {
-var userInitials = "";
-while (userInitials === "" || userInitials === null) {
-  userInitials = window.prompt("Enter and submit initials to save your score:");
+var promptUserInitials = function() {
+  var userInitialsFormEl = document.createElement("form");
+  userInitialsFormEl.className = "user-initials-form";
+  userInitialsFormEl.id = "userInitialsForm";
+  userInitialsFormEl.innerHTML = '<div class="user-initials-form" id="userInitialsForm"></div>';
+
+  var userInitialsEl = document.createElement("input");
+  userInitialsEl.className = "user-initials";
+  userInitialsEl.id = "userInitials";
+  userInitialsEl.innerHTML = '"<input type="text" name="user-initials" placeholder="Enter initials to save your score: />"';
+
+  userInitialsEl.appendChild(userInitialsEl);
+  
+
 }
-console.log("Your initials are " + userInitials);
-return userInitials;
-};
 
   // if (initials.length <= 3) {
   //   console.log(initials);
