@@ -1,4 +1,4 @@
-var timeLeft = 60;
+var timeLeft = 75;
 var questionCounter = 0;
 var startButton = document.querySelector("#start-quiz");
 var instructionsEl = document.querySelector("#instructions");
@@ -114,7 +114,7 @@ var answerHandler = function() {
     console.log("wrong");
     // speed up timer for wrong answers
     timerEl.innerHTML = timeLeft + " seconds remaining!";
-    if (timeLeft = timeLeft - 10) {
+    if (timeLeft = timeLeft - 15) {
       timer();
     }
   }
@@ -191,7 +191,7 @@ var promptUserInitials = function() {
   userInitialsEl.innerHTML = '"<input type="text" name="user-initials" placeholder="Enter initials to save your score: />"';
 
   userInitialsEl.appendChild(userInitialsEl);
-  
+
 
 }
 
