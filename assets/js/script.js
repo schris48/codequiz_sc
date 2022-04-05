@@ -17,7 +17,8 @@ var submitInitialsBtnEl = document.querySelector("#submitInitialsBtn");
 var finalScoreEl = document.querySelector("#finalScore");
 var questionWrapperEl = document.querySelector(".question-wrapper");
 var finalScoreContainer = document.querySelector("#finalScoreContainer");
-
+var scoresContainerEl = document.querySelector("#scoresContainer");
+var scoresTitleEl = document.querySelector("#scoresTitle")
 
 const questionArray = [
   {
@@ -53,6 +54,8 @@ var generateQuestion = function () {
   // disappear start quiz button
   document.querySelector("#start-quiz").style.display="none";
   document.querySelector("#instructions").style.display="none";
+  questionWrapperEl.style.display="block";
+  
 
   // loop through questionArray
   var questionTitle = questionArray[questionCounter].question;
@@ -141,38 +144,20 @@ var gameOver = function() {
   // generate final score
   questionWrapperEl.style.display="none";
   finalScoreContainer.style.display="block";
-
-  // // generate scores container element
-  // let scoresContainerEl = document.querySelector("#scoresContainer");
-  // scoresContainerEl.classList.remove("scores-container");
-  // scoresContainerEl.classList.add("scores-container::after")
-
-  // // generate scores title element
-  // let scoresTitleEl = document.querySelector("#scoresTitle");
-  // scoresTitleEl.classList.remove("scores-title");
-  // scoresTitleEl.classList.add("scores-title::after");
-
-  // // generate scores list element
-  // let scoresListEl = document.querySelector("#scoresList");
-  // scoresListEl.classList.remove("scores-list");
-  // scoresListEl.classList.add("scores-list::after");
-
-  // // generate scores item
-  // let scoresItemEl = document.querySelector("#scoresItem");
-  // scoresItemEl.classList.remove("class-list");
-  // scoresItemEl.classList.add("scores-item::after");
-
-  // prompt user for initials and save them
-
-    // generate score
-    var generateFinalScoreEl = timeLeft;
-    if (timeLeft <= -1) {
-      timeLeft = 0;
-      finalScoreEl.textContent = "Game over! You scored: " + timeLeft;
-    } else {
-      finalScoreEl.textContent = "Game over! You scored: " + timeLeft;
-    }
-    console.log("This is the final score: " + generateFinalScoreEl);
+  scoresContainerEl.style.display="block";
+  scoresTitleEl.style.display="block";
+  
+  var generateFinalScoreEl = timeLeft;
+  if (timeLeft <= -1) {
+    timeLeft = 0;
+    finalScoreEl.textContent = "You scored: " + timeLeft;
+  } else {
+    finalScoreEl.textContent = "You scored: " + timeLeft;
+  }
+  if (generateFinalScoreEl <= -1) {
+    generateFinalScoreEl = 0;
+  }
+  console.log("This is the final score: " + generateFinalScoreEl);
 }
 
 var submitInitials = function() {
@@ -185,6 +170,7 @@ var submitInitials = function() {
 
   scores.push(newUserScore);
   console.log(scores);
+  
 
   // stringify value of local storage
   localStorage.setItem("allScores", JSON.stringify(scores));
