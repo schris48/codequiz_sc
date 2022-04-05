@@ -176,13 +176,6 @@ footer {
   display: none;
 }
 
-/* .final-score-title::after {
-  color: var(--secondary);
-  font-size: 2.6rem;
-  list-style: none;
-  display: normal;
-} */
-
 .final-score-container {
   color: var(--grey);
   padding: 15px 15px;
@@ -202,17 +195,20 @@ footer {
   margin-bottom: 20px;
   display: none;
 }
-/* .final-score::after {
-  color: var(--grey);
-  padding: 15px 15px;
-  border: 2px solid var(--grey);
-  background: var(--tertiary);
+
+.play-again-btn {
+  outline: none;
+  border: none;
+  display: none;
+  padding: 10px 15px;
+  margin: 15px;
+  background: var(--primary);
+  font-size: 2.2rem;
   border-radius: 12px;
-  margin-bottom: 20px;
-  list-style: none;
-  text-align: center;
-  display: normal;
-} */
+  position: relative;
+  top: -3px;
+  box-shadow: 0 3px var(--grey);
+}
 
 @media screen and (max-width: 980px) {
   form .form-group {

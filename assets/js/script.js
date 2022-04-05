@@ -1,5 +1,6 @@
 var timeLeft = 75;
 var questionCounter = 0;
+var scoreIdCounter = 0;
 var startButton = document.querySelector("#start-quiz");
 var instructionsEl = document.querySelector("#instructions");
 var questionList = document.querySelector("#question-list");
@@ -18,7 +19,10 @@ var finalScoreEl = document.querySelector("#finalScore");
 var questionWrapperEl = document.querySelector(".question-wrapper");
 var finalScoreContainer = document.querySelector("#finalScoreContainer");
 var scoresContainerEl = document.querySelector("#scoresContainer");
-var scoresTitleEl = document.querySelector("#scoresTitle")
+var scoresTitleEl = document.querySelector("#scoresTitle");
+var scoresListEl = document.querySelector("#scoresList");
+var scoresItemEl = document.querySelector("#scoresItem");
+var playAgainBtnEl = document.querySelector("#playAgainBtn");
 
 const questionArray = [
   {
@@ -146,6 +150,9 @@ var gameOver = function() {
   finalScoreContainer.style.display="block";
   scoresContainerEl.style.display="block";
   scoresTitleEl.style.display="block";
+  scoresListEl.style.display="block";
+  scoresItemEl.style.display="block";
+  playAgainBtnEl.style.display="block";
   
   var generateFinalScoreEl = timeLeft;
   if (timeLeft <= -1) {
@@ -167,14 +174,14 @@ var submitInitials = function() {
     score: timeLeft,
     initials: initialsValue
   }
-
+  newUserScore.id = scoreIdCounter;
   scores.push(newUserScore);
   console.log(scores);
   
 
   // stringify value of local storage
   localStorage.setItem("allScores", JSON.stringify(scores));
-
+  
   // var userInitialsFormEl = document.createElement("form");
   // userInitialsFormEl.className = "user-initials-form";
   // userInitialsFormEl.id = "userInitialsForm";
@@ -187,9 +194,26 @@ var submitInitials = function() {
 
   // userInitialsEl.appendChild(userInitialsEl);
 
-
+  scoreIdCounter++;
 }
 
+function playAgain() {
+  timeLeft = 75;
+  questionCounter = 0;
+  questionWrapperEl.style.display="block";
+  finalScoreContainer.style.display="none";
+  scoresContainerEl.style.display="none";
+  scoresTitleEl.style.display="none";
+  scoresListEl.style.display="none";
+  scoresItemEl.style.display="none";
+  playAgainBtnEl.style.display="none";
+  document.querySelector("#question").style.display="block";
+  document.querySelector("#answerOne").style.display="block";
+  document.querySelector("#answerTwo").style.display="block";
+  document.querySelector("#answerThree").style.display="block";
+  document.querySelector("#answerFour").style.display="block";
+  generateQuestion();
+}
   // if (initials.length <= 3) {
   //   console.log(initials);
   //   return;
@@ -216,3 +240,4 @@ var submitInitials = function() {
 
 startButton.addEventListener("click", generateQuestion);
 submitInitialsBtnEl.addEventListener("click", submitInitials);
+playAgainBtnEl.addEventListener("click", playAgain);
