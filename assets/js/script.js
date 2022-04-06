@@ -20,8 +20,18 @@ var questionWrapperEl = document.querySelector(".question-wrapper");
 var finalScoreContainer = document.querySelector("#finalScoreContainer");
 var scoresContainerEl = document.querySelector("#scoresContainer");
 var scoresTitleEl = document.querySelector("#scoresTitle");
+var finalTitleEl = document.querySelector("#finalTitle");
 var scoresListEl = document.querySelector("#scoresList");
-var scoresItemEl = document.querySelector("#scoresItem");
+var scoresItemOne = document.querySelector("#scoresItemOne");
+var scoresItemTwo = document.querySelector("#scoresItemTwo");
+var scoresItemThree = document.querySelector("#scoresItemThree");
+var scoresItemFour = document.querySelector("#scoresItemFour");
+var scoresItemFive = document.querySelector("#scoresItemFive");
+var scoresItemSix = document.querySelector("#scoresItemSix");
+var scoresItemSeven = document.querySelector("#scoresItemSeven");
+var scoresItemEight = document.querySelector("#scoresItemEight");
+var scoresItemNine = document.querySelector("#scoresItemNine");
+var scoresItemTen = document.querySelector("#scoresItemTen");
 var playAgainBtnEl = document.querySelector("#playAgainBtn");
 
 const questionArray = [
@@ -144,16 +154,7 @@ var answerHandler = function() {
 }
 
 var gameOver = function() {
-
   // generate final score
-  questionWrapperEl.style.display="none";
-  finalScoreContainer.style.display="block";
-  scoresContainerEl.style.display="block";
-  scoresTitleEl.style.display="block";
-  scoresListEl.style.display="block";
-  scoresItemEl.style.display="block";
-  playAgainBtnEl.style.display="block";
-  
   var generateFinalScoreEl = timeLeft;
   if (timeLeft <= -1) {
     timeLeft = 0;
@@ -165,10 +166,39 @@ var gameOver = function() {
     generateFinalScoreEl = 0;
   }
   console.log("This is the final score: " + generateFinalScoreEl);
+  
+  // display question wrapper
+  questionWrapperEl.style.display="none";
+  
+  // display user's current round score
+  finalScoreContainer.style.display="block";
+  finalTitleEl.style.display="block";
+  
+  // display high scores ordered list
+  scoresContainerEl.style.display="block";
+  scoresTitleEl.style.display="block";
+  
+  // display high score list heading
+  scoresListEl.style.display="block";
+  
+  // display high score list items
+  scoresItemOne.style.display="block";
+  scoresItemTwo.style.display="block";
+  scoresItemThree.style.display="block";
+  scoresItemFour.style.display="block";
+  scoresItemFive.style.display="block";
+  scoresItemSix.style.display="block";
+  scoresItemSeven.style.display="block";
+  scoresItemEight.style.display="block";
+  scoresItemNine.style.display="block";
+  scoresItemTen.style.display="block";
+  
+  // display play again button
+  playAgainBtnEl.style.display="block";
 }
 
 var submitInitials = function() {
-  var initialsValue = userInitialsEl.value.trim()
+  var initialsValue = userInitialsEl.value.trim();
   var scores = []
   var newUserScore = {
     score: timeLeft,
@@ -205,7 +235,7 @@ function playAgain() {
   scoresContainerEl.style.display="none";
   scoresTitleEl.style.display="none";
   scoresListEl.style.display="none";
-  scoresItemEl.style.display="none";
+  scoresItemOne.style.display="none";
   playAgainBtnEl.style.display="none";
   document.querySelector("#question").style.display="block";
   document.querySelector("#answerOne").style.display="block";

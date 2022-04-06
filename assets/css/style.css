@@ -60,7 +60,6 @@ footer {
 }
 
 .page-content {
-  /* flex: 1; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -124,9 +123,7 @@ footer {
   padding: 15px;
   height: fit-content;
   width: 75%;
-  background: #3eff687e;
   border-radius: 12px;
-  border: 2px solid var(--grey);
   display: none;
 }
 
@@ -170,7 +167,13 @@ footer {
   top: 0;
 }
 
-.final-score-title {
+/* .final-score-title {
+  color: var(--secondary);
+  font-size: 2.6rem;
+  display: none;
+} */
+
+.final-title {
   color: var(--secondary);
   font-size: 2.6rem;
   display: none;
@@ -180,7 +183,7 @@ footer {
   color: var(--grey);
   padding: 15px 15px;
   border: 2px solid var(--grey);
-  background: var(--tertiary);
+  background: #3eff687e;
   border-radius: 12px;
   margin-bottom: 20px;
   display: none;
@@ -190,7 +193,7 @@ footer {
   color: var(--grey);
   padding: 15px 15px;
   border: 2px solid var(--grey);
-  background: var(--tertiary);
+  background: #3eff687e;
   border-radius: 12px;
   margin-bottom: 20px;
   display: none;
@@ -208,6 +211,15 @@ footer {
   position: relative;
   top: -3px;
   box-shadow: 0 3px var(--grey);
+}
+
+.play-again-btn:hover {
+  box-shadow: 0 2px var(--grey);
+  top: -2px;
+}
+.play-again-btn:active {
+  box-shadow: 0 0px var(--grey);
+  top: 0;
 }
 
 @media screen and (max-width: 980px) {
