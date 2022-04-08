@@ -2,7 +2,7 @@
 
 ## About the app
 * This code quiz is built using HTML, CSS, and JavaScript.
-* This quiz will test your knowledge of basic HTML, CSS, and JavaScript semantic essentials
+* This quiz will test your knowledge of HTML, CSS, and JavaScript semantic essentials
 
 ## New updates!
 Codequiz has been updated with NEW FEATURES! Including:
