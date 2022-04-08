@@ -175,6 +175,8 @@ var gameOver = function() {
 }
 
 var submitInitials = function() {
+  submitInitialsBtnEl.style.display="none";
+
   var initialsValue = userInitialsEl.value.trim();
   // check for empty or null value in initials field
   if (!initialsValue) {
@@ -200,6 +202,7 @@ var submitInitials = function() {
   
 var createScoreEl = function() {
   // sort score items by ascending order
+
   var storedScores = JSON.parse(localStorage.getItem('allScores'))
 
   storedScores.sort(function(a, b){
