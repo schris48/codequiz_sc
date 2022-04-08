@@ -175,7 +175,6 @@ var gameOver = function() {
 }
 
 var submitInitials = function() {
-  submitInitialsBtnEl.style.display="none";
 
   var initialsValue = userInitialsEl.value.trim();
   // check for empty or null value in initials field
@@ -183,6 +182,8 @@ var submitInitials = function() {
     window.alert("Please enter initials to submit score!")
     return false;
   }
+
+  submitInitialsBtnEl.style.display="none";
   // check for local storage or empty array
   var scores = JSON.parse(localStorage.getItem('allScores')) || []
   var newUserScore = {
