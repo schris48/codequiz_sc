@@ -21,7 +21,8 @@ var finalScoreContainer = document.querySelector("#finalScoreContainer");
 var scoresContainerEl = document.querySelector("#scoresContainer");
 var scoresTitleEl = document.querySelector("#scoresTitle");
 var finalTitleEl = document.querySelector("#finalTitle");
-var scoresListEl = document.querySelector("#scoresList");
+var scoresListEl = document.querySelector(".scores-list");
+var scoresListItem = document.querySelector(".scores-item");
 var scoresItemOne = document.querySelector("#scoresItemOne");
 var scoresItemTwo = document.querySelector("#scoresItemTwo");
 var scoresItemThree = document.querySelector("#scoresItemThree");
@@ -165,7 +166,7 @@ var gameOver = function() {
   if (generateFinalScoreEl <= -1) {
     generateFinalScoreEl = 0;
   }
-  console.log("This is the final score: " + generateFinalScoreEl);
+  console.log("The final score is: " + generateFinalScoreEl);
   
   // display question wrapper
   questionWrapperEl.style.display="none";
@@ -178,20 +179,20 @@ var gameOver = function() {
   scoresContainerEl.style.display="block";
   scoresTitleEl.style.display="block";
   
-  // display high score list heading
-  scoresListEl.style.display="block";
+  // // display high score list heading
+  // scoresListEl.style.display="block";
   
-  // display high score list items
-  scoresItemOne.style.display="block";
-  scoresItemTwo.style.display="block";
-  scoresItemThree.style.display="block";
-  scoresItemFour.style.display="block";
-  scoresItemFive.style.display="block";
-  scoresItemSix.style.display="block";
-  scoresItemSeven.style.display="block";
-  scoresItemEight.style.display="block";
-  scoresItemNine.style.display="block";
-  scoresItemTen.style.display="block";
+  // // display high score list items
+  // scoresItemOne.style.display="block";
+  // scoresItemTwo.style.display="block";
+  // scoresItemThree.style.display="block";
+  // scoresItemFour.style.display="block";
+  // scoresItemFive.style.display="block";
+  // scoresItemSix.style.display="block";
+  // scoresItemSeven.style.display="block";
+  // scoresItemEight.style.display="block";
+  // scoresItemNine.style.display="block";
+  // scoresItemTen.style.display="block";
   
   // display play again button
   playAgainBtnEl.style.display="block";
@@ -208,9 +209,29 @@ var submitInitials = function() {
   scores.push(newUserScore);
   console.log(scores);
   
-
   // stringify value of local storage
   localStorage.setItem("allScores", JSON.stringify(scores));
+
+  var createScoreEl = function(newUserScore) {
+  console.log(newUserScore);
+  var scoresListInfo = document.createElement("ol");
+  scoresListInfo.className = "scores-list-info";
+  console.log(scoresListInfo);
+
+  scoresListInfo.setAttribute("scores-id", scoreIdCounter);
+
+  var scoresListItem = document.createElement("ol");
+  scoresListItem.className = "scores-item";
+  scoresListItem.innerHTML = '<li class="user-name">' + newUserScore.initials + '<li><span class="user-score">' + newUserScore.score + '</span>';
+  scoresListItem.appendChild(scoresListInfo);
+
+  var scoresEl = createScoreEl(scoreIdCounter);
+  scoresListItem.appendChild(scoresEl);
+
+  scoresListItem.style.display="block";
+  scoresListEl.style.display="block";
+  
+  console.log("This is " + scoresItemOne);
   
   // var userInitialsFormEl = document.createElement("form");
   // userInitialsFormEl.className = "user-initials-form";
@@ -225,7 +246,8 @@ var submitInitials = function() {
   // userInitialsEl.appendChild(userInitialsEl);
 
   scoreIdCounter++;
-}
+  }
+};
 
 function playAgain() {
   timeLeft = 75;
@@ -234,7 +256,7 @@ function playAgain() {
   finalScoreContainer.style.display="none";
   scoresContainerEl.style.display="none";
   scoresTitleEl.style.display="none";
-  scoresListEl.style.display="none";
+  scoresListItem.style.display="none";
   scoresItemOne.style.display="none";
   playAgainBtnEl.style.display="none";
   document.querySelector("#question").style.display="block";
@@ -266,7 +288,6 @@ function playAgain() {
   //   var scoreFiveEl = document.querySelector("#scoreFive");
   //   console.log(scoreFiveEl);
   // }
-
 
 startButton.addEventListener("click", generateQuestion);
 submitInitialsBtnEl.addEventListener("click", submitInitials);
