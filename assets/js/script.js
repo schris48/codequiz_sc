@@ -41,7 +41,7 @@ const questionArray = [
   },
   {
     question: "4. String values must be enclosed with ______ when being assigned to variables",
-    choices: ["Commas", "Curly brackets", "Quotes", "Parenthesis"],
+    choices: ["Commas", "Curly brackets", "Quotes", "Parentheses"],
     correctChoice: "Quotes"
   },
   {
