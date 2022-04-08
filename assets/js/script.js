@@ -31,8 +31,8 @@ const questionArray = [
   },
   {
     question: "2. The condition in an if/else statement is enclosed in:",
-    choices: ["Quotes", "Parenthisis", "Curly brackets", "Square brackets"],
-    correctChoice: "Parenthesis"
+    choices: ["Quotes", "Parentheses", "Curly brackets", "Square brackets"],
+    correctChoice: "Parentheses"
   },
   {
     question: "3. Arrays in JavaScript can be used to store:",
